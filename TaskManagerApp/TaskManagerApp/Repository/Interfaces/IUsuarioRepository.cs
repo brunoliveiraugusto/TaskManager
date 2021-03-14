@@ -5,7 +5,7 @@ using TaskManagerApp.Domain;
 
 namespace TaskManagerApp.Repository.Interfaces
 {
-    public interface IUsuarioRepository
+    public interface IUsuarioRepository : IRepository<Usuario>
     {
         Task CriarUsuarioAsync(Usuario usuario);
         Task<bool> IndicaUsuarioExistenteAsync(string username);

@@ -32,11 +32,10 @@ namespace TaskManagerApp.Repository
             if (!usuarioCadastrado)
             {
                 if (Usuarios == null) Usuarios = new List<Usuario>();
-                usuario.Id = Guid.NewGuid();
+                usuario.Id = GetNewGuid();
                 Usuarios.Add(usuario);
-                string users = JsonConvert.SerializeObject(Usuarios);
                 await _fileRepository.ClearFileAsync(_sourcePath);
-                await _fileSystem.File.AppendAllTextAsync(_sourcePath, users);
+                await PersistirAsync(Serialize(Usuarios));
             }
             else
             {
@@ -72,6 +71,21 @@ namespace TaskManagerApp.Repository
             {
                 throw new UserNotFoundException();
             }
+        }
+
+        public string Serialize(List<Usuario> usuarios)
+        {
+            return JsonConvert.SerializeObject(usuarios);
+        }
+
+        public async Task PersistirAsync(string usuarios)
+        {
+            await _fileSystem.File.AppendAllTextAsync(_sourcePath, usuarios);
+        }
+
+        public Guid GetNewGuid()
+        {
+            return Guid.NewGuid();
         }
     }
 }
