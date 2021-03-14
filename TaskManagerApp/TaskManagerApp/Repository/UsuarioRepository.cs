@@ -46,8 +46,32 @@ namespace TaskManagerApp.Repository
 
         public async Task<bool> IndicaUsuarioExistenteAsync(string username)
         {
-            Usuarios = JsonConvert.DeserializeObject<List<Usuario>>(await _fileSystem.File.ReadAllTextAsync(_sourcePath));
+            Usuarios = await ObterUsuariosAsync();
             return Usuarios != null ? Usuarios.Any(x => x.Login.Equals(username)) : false;
+        }
+
+        private async Task<List<Usuario>> ObterUsuariosAsync()
+        {
+            return JsonConvert.DeserializeObject<List<Usuario>>(await _fileSystem.File.ReadAllTextAsync(_sourcePath));
+        }
+
+        public async Task<Guid> Login(Usuario loginUsuario)
+        {
+            Usuarios = await ObterUsuariosAsync();
+            if (Usuarios == null) throw new UserNotFoundException();
+
+            var user = Usuarios.Where(usuario => usuario.Login == loginUsuario.Login.ToLower()
+                && usuario.Password == loginUsuario.Password.ToLower())
+                .FirstOrDefault();
+
+            if (user != null) 
+            {
+                return user.Id;
+            } 
+            else
+            {
+                throw new UserNotFoundException();
+            }
         }
     }
 }

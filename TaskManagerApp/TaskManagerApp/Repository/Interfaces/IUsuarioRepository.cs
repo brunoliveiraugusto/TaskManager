@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TaskManagerApp.Domain;
 
 namespace TaskManagerApp.Repository.Interfaces
@@ -7,5 +9,6 @@ namespace TaskManagerApp.Repository.Interfaces
     {
         Task CriarUsuarioAsync(Usuario usuario);
         Task<bool> IndicaUsuarioExistenteAsync(string username);
+        Task<Guid> Login(Usuario loginUsuario);
     }
 }
