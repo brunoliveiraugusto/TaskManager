@@ -38,10 +38,14 @@ namespace TaskManagerApp
 
         private void ConfigureServices(IServiceCollection services)
         {
+            //Services
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<ILoginService, LoginService>();
 
+            //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            
             services.AddSingleton<IFileSystem>(new FileSystem());
 
             services.AddTransient(typeof(MainWindow));
