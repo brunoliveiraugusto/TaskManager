@@ -4,5 +4,6 @@
     {
         Usuario,
         Log,
+        Tarefa
     }
 }
