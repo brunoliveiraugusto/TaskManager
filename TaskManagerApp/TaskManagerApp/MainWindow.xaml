@@ -11,10 +11,10 @@
         <Label Content="Informe o usuário:" HorizontalAlignment="Left" Height="32" Margin="40,116,0,0" VerticalAlignment="Top" Width="185" FontSize="17"/>
         <TextBox x:Name="txtLogin" HorizontalAlignment="Center" Height="34" Margin="0,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" TextChanged="TextBox_TextChanged"/>
         <Label Content="Informe a senha:" HorizontalAlignment="Left" Height="32" Margin="40,210,0,0" VerticalAlignment="Top" Width="185" FontSize="17"/>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Center" Height="34" Margin="0,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" TextChanged="TextBox_TextChanged"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Center" Height="34" Margin="0,247,0,0" VerticalAlignment="Top" Width="370"/>
         <Button Content="botão criar" HorizontalAlignment="Center" Height="45" Margin="0,325,0,0" VerticalAlignment="Top" Width="370" FontSize="17"/>
         <Button Content="Criar" HorizontalAlignment="Center" Height="45" Margin="0,325,0,0" VerticalAlignment="Top" Width="370" FontSize="17" Click="CadastrarUsuario"/>
-        <Button Content="Entrar" HorizontalAlignment="Center" Height="45" Margin="0,391,0,0" VerticalAlignment="Top" Width="370" FontSize="17" Click="OpenFormLogin"/>
+        <Button Content="Entrar" HorizontalAlignment="Center" Height="45" Margin="0,391,0,0" VerticalAlignment="Top" Width="370" FontSize="17"/>
         <Label x:Name="txtErroCadastro" HorizontalAlignment="Center" Height="27" Margin="0,463,0,0" VerticalAlignment="Top" Width="370"/>
 
     </Grid>

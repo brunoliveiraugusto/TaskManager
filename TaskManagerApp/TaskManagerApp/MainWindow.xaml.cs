@@ -45,7 +45,7 @@ namespace TaskManagerApp
             var usuario = new Usuario
             {
                 Login = txtLogin.Text,
-                Password = txtPassword.Text
+                Password = txtPassword.Password
             };
 
             try
