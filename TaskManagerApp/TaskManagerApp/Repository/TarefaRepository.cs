@@ -36,6 +36,7 @@ namespace TaskManagerApp.Repository
 
         public async Task CriarAsync(Tarefa tarefa)
         {
+            _fileRepository.CreateDirectory(DataFile.Tarefa);
             tarefa.Id = GetNewGuid();
             Tarefas.Add(tarefa);
             await _fileRepository.ClearFileAsync(_sourcePath);
