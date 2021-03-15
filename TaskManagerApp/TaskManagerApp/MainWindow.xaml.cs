@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManagerApp.Domain;
+using TaskManagerApp.Service;
+using TaskManagerApp.Service.Interfaces;
+using TaskManagerApp.Utils.Exceptions;
 
 namespace TaskManagerApp
 {
@@ -20,9 +24,38 @@ namespace TaskManagerApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IUsuarioService _usuarioService;
+        private readonly ILoginService _loginService;
+        public string Login { get; set; }
+
+        public MainWindow(IUsuarioService usuarioService, ILoginService loginService)
         {
             InitializeComponent();
+            _usuarioService = usuarioService;
+            _loginService = loginService;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private async void CadastrarUsuario(object sender, RoutedEventArgs e)
+        {
+            var usuario = new Usuario
+            {
+                Login = txtLogin.Text,
+                Password = txtPassword.Text
+            };
+
+            try
+            {
+                await _usuarioService.CadastrarNovoUsuarioAsync(usuario);
+            }
+            catch(RequiredFieldException ex)
+            {
+                txtErroCadastro.Content = ex.Message;
+            }
         }
     }
 }
