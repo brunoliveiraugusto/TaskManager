@@ -26,18 +26,12 @@ namespace TaskManagerApp
     {
         private readonly IUsuarioService _usuarioService;
         private readonly ILoginService _loginService;
-        public string Login { get; set; }
 
         public MainWindow(IUsuarioService usuarioService, ILoginService loginService)
         {
             InitializeComponent();
             _usuarioService = usuarioService;
             _loginService = loginService;
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private async void CadastrarUsuario(object sender, RoutedEventArgs e)
@@ -56,6 +50,13 @@ namespace TaskManagerApp
             {
                 txtErroCadastro.Content = ex.Message;
             }
+        }
+
+        private void OpenFormLogin(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            LoginWindow loginWindow = new LoginWindow(_loginService);
+            loginWindow.Show();
         }
     }
 }
