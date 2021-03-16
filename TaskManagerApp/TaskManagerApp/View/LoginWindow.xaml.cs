@@ -21,11 +21,13 @@ namespace TaskManagerApp
     public partial class LoginWindow : Window
     {
         private ILoginService _loginService;
+        private IUsuarioService _usuarioService;
 
-        public LoginWindow(ILoginService loginService)
+        public LoginWindow(ILoginService loginService, IUsuarioService usuarioService)
         {
             InitializeComponent();
             _loginService = loginService;
+            _usuarioService = usuarioService;
         }
 
         private async void Login(object sender, RoutedEventArgs e)
@@ -44,6 +46,13 @@ namespace TaskManagerApp
             {
                 txtErroLogin.Content = ex.Message;
             }
+        }
+
+        private void OpenFormCadastro(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var mainWindow = new MainWindow(_usuarioService, _loginService);
+            mainWindow.Show();
         }
     }
 }

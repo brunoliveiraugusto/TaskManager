@@ -55,7 +55,7 @@ namespace TaskManagerApp
         private void OpenFormLogin(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            LoginWindow loginWindow = new LoginWindow(_loginService);
+            LoginWindow loginWindow = new LoginWindow(_loginService, _usuarioService);
             loginWindow.Show();
         }
     }

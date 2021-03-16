@@ -15,7 +15,7 @@
         <PasswordBox x:Name="txtPassword" HorizontalAlignment="Center" Height="34" Margin="0,247,0,0" VerticalAlignment="Top" Width="370"/>
         <Button Content="botão criar" HorizontalAlignment="Center" Height="45" Margin="0,325,0,0" VerticalAlignment="Top" Width="370" FontSize="17"/>
         <Button Content="Entrar" HorizontalAlignment="Center" Height="45" Margin="0,325,0,0" VerticalAlignment="Top" Width="370" FontSize="17" Click="Login"/>
-        <Button Content="Criar" HorizontalAlignment="Center" Height="45" Margin="0,391,0,0" VerticalAlignment="Top" Width="370" FontSize="17"/>
+        <Button Content="Criar" HorizontalAlignment="Center" Height="45" Margin="0,391,0,0" VerticalAlignment="Top" Width="370" FontSize="17" Click="OpenFormCadastro"/>
         <Label x:Name="txtErroLogin" HorizontalAlignment="Center" Height="27" Margin="0,463,0,0" VerticalAlignment="Top" Width="370"/>
     </Grid>
 </Window>
