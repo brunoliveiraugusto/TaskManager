@@ -16,6 +16,7 @@ using TaskManagerApp.Domain;
 using TaskManagerApp.Service;
 using TaskManagerApp.Service.Interfaces;
 using TaskManagerApp.Utils.Exceptions;
+using TaskManagerApp.View;
 
 namespace TaskManagerApp
 {
@@ -26,6 +27,7 @@ namespace TaskManagerApp
     {
         private readonly IUsuarioService _usuarioService;
         private readonly ILoginService _loginService;
+        protected Guid IdUsuario { get; set; }
 
         public MainWindow(IUsuarioService usuarioService, ILoginService loginService)
         {
@@ -44,9 +46,10 @@ namespace TaskManagerApp
 
             try
             {
-                await _usuarioService.CadastrarNovoUsuarioAsync(usuario);
+                IdUsuario = await _usuarioService.CadastrarNovoUsuarioAsync(usuario);
+                OpenFormHome(sender, e);
             }
-            catch(RequiredFieldException ex)
+            catch(UserExistsException ex)
             {
                 txtErroCadastro.Content = ex.Message;
             }
@@ -57,6 +60,13 @@ namespace TaskManagerApp
             this.Hide();
             LoginWindow loginWindow = new LoginWindow(_loginService, _usuarioService);
             loginWindow.Show();
+        }
+
+        private void OpenFormHome(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var homeWindow = new HomeWindow(IdUsuario);
+            homeWindow.Show();
         }
     }
 }
