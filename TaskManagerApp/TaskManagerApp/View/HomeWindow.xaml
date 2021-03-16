@@ -12,8 +12,8 @@
         <Label Content="Tarefas" HorizontalAlignment="Center" Height="68" Margin="0,4,0,0" VerticalAlignment="Top" Width="800" HorizontalContentAlignment="Center"
                FontSize="40"/>
         <Label Content="Descrição da tarefa:" HorizontalAlignment="Left" Height="42" Margin="34,186,0,0" VerticalAlignment="Top" Width="220" FontSize="20" VerticalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Height="197" Margin="34,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
-        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="34,475,0,0" VerticalAlignment="Top" Width="254"/>
+        <TextBox x:Name="txtDescricaoTarefaCadastro" HorizontalAlignment="Left" Height="197" Margin="34,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
+        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="34,475,0,0" VerticalAlignment="Top" Width="254" Click="CadastrarTarefa"/>
         <Label Content="Nova Tarefa" HorizontalAlignment="Left" Height="62" Margin="34,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"/>
         <Label Content="À Fazer" HorizontalAlignment="Left" Height="62" Margin="352,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
@@ -26,6 +26,7 @@
             HorizontalContentAlignment="Center"/>
         <TextBox HorizontalAlignment="Left" Height="197" Margin="670,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
         <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="670,470,0,0" VerticalAlignment="Top" Width="254"/>
+        <Label x:Name="txtErroCadastroTarefa" HorizontalAlignment="Left" Height="24" Margin="34,541,0,0" VerticalAlignment="Top" Width="254"/>
 
     </Grid>
 </Window>
