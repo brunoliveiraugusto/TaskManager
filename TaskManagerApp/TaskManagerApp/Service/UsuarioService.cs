@@ -32,12 +32,12 @@ namespace TaskManagerApp.Service
         {
             if(string.IsNullOrEmpty(usuario.Login))
             {
-                throw new RequiredFieldException("O campo Login é obrigatório.");
+                throw new RequiredFieldException("Por favor, informe o Login do usuário.");
             }
 
             if (string.IsNullOrEmpty(usuario.Password))
             {
-                throw new RequiredFieldException("O campo Password é obrigatório.");
+                throw new RequiredFieldException("Por favor, informe a Senha do usuário.");
             }
 
             return true;
