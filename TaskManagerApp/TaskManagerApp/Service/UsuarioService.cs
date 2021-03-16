@@ -22,13 +22,13 @@ namespace TaskManagerApp.Service
         public async Task<Guid> CadastrarNovoUsuarioAsync(Usuario usuario)
         {
             _fileRepository.CreateDirectory(DataFile.Usuario);
-            ValidarDadosCadastroUsuarioPreenchido(usuario);
+            ValidarDadosPreenchidosCadastroUsuario(usuario);
             return await _usuarioRepository.CriarUsuarioAsync(usuario);
             
 
         }
 
-        public bool ValidarDadosCadastroUsuarioPreenchido(Usuario usuario)
+        public void ValidarDadosPreenchidosCadastroUsuario(Usuario usuario)
         {
             if(string.IsNullOrEmpty(usuario.Login))
             {
@@ -39,8 +39,6 @@ namespace TaskManagerApp.Service
             {
                 throw new RequiredFieldException("Por favor, informe a Senha do usuário.");
             }
-
-            return true;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace TaskManagerApp.Service.Interfaces
     public interface IUsuarioService
     {
         Task<Guid> CadastrarNovoUsuarioAsync(Usuario usuario);
-        bool ValidarDadosCadastroUsuarioPreenchido(Usuario usuario);
+        void ValidarDadosPreenchidosCadastroUsuario(Usuario usuario);
     }
 }
