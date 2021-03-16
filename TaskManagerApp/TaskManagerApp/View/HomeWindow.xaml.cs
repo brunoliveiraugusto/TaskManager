@@ -28,6 +28,7 @@ namespace TaskManagerApp.View
             InitializeComponent();
             IdUsuario = idUsuario;
             _tarefaService = tarefaService;
+            ObterTarefasCadastradas();
         }
 
         private async void CadastrarTarefa(object sender, RoutedEventArgs e)
@@ -41,6 +42,27 @@ namespace TaskManagerApp.View
 
             await _tarefaService.CadastarTarefaAsync(tarefa);
             txtDescricaoTarefaCadastro.Text = string.Empty;
+            ObterTarefasCadastradas();
+        }
+
+        private async void ObterTarefasCadastradas()
+        {
+            listTarefas.ItemsSource = await _tarefaService.ObterTarefasCadastradasPorUsuario(IdUsuario);
+        }
+
+        private void TarefaSelecionada(object sender, SelectionChangedEventArgs e)
+        {
+            Tarefa tarefa = (Tarefa)listTarefas.SelectedItem;
+        }
+
+        private async void RemoverTarefa(object sender, RoutedEventArgs e)
+        {
+            Tarefa tarefa = (Tarefa)listTarefas.SelectedItem;
+            if(tarefa != null)
+            {
+                await _tarefaService.RemoverTarefaAsync(tarefa.Id, tarefa.IdUsuario);
+                ObterTarefasCadastradas();
+            }
         }
     }
 }
