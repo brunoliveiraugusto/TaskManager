@@ -41,10 +41,12 @@ namespace TaskManagerApp
             //Services
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ITarefaService, TarefaService>();
 
             //Repository
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<ITarefaRepository, TarefaRepository>();
             
             services.AddSingleton<IFileSystem>(new FileSystem());
 
