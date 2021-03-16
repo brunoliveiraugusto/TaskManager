@@ -11,6 +11,7 @@ namespace TaskManagerApp.Repository.Interfaces
         Task CriarAsync(Tarefa tarefa);
         Task RemoverAsync(Guid id, Guid idUsuario);
         Task AtualizarAsync(Tarefa tarefa);
-        List<Tarefa> ObterTarefas();        
+        List<Tarefa> ObterTarefas();
+        Task<List<Tarefa>> ObterTarefasPorIdUsuarioAsync(Guid usuarioId);
     }
 }

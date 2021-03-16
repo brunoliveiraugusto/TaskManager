@@ -73,5 +73,11 @@ namespace TaskManagerApp.Repository
         {
             return Guid.NewGuid();
         }
+
+        public async Task<List<Tarefa>> ObterTarefasPorIdUsuarioAsync(Guid usuarioId)
+        {
+            var tarefas = JsonConvert.DeserializeObject<IEnumerable<Tarefa>>(await _fileSystem.File.ReadAllTextAsync(_sourcePath));
+            return tarefas.Where(tarefa => tarefa.IdUsuario == usuarioId).ToList();
+        }
     }
 }
