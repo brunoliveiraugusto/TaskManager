@@ -7,7 +7,7 @@ namespace TaskManagerApp.Repository.Interfaces
 {
     public interface IUsuarioRepository : IRepository<Usuario>
     {
-        Task CriarUsuarioAsync(Usuario usuario);
+        Task<Guid> CriarUsuarioAsync(Usuario usuario);
         Task<bool> IndicaUsuarioExistenteAsync(string username);
         Task<Guid> Login(Usuario loginUsuario);
     }

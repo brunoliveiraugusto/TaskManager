@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TaskManagerApp.Domain;
 using TaskManagerApp.Repository.Interfaces;
 using TaskManagerApp.Service.Interfaces;
@@ -18,17 +19,16 @@ namespace TaskManagerApp.Service
             _fileRepository = fileRepository;
         }
 
-        public async Task CadastrarNovoUsuarioAsync(Usuario usuario)
+        public async Task<Guid> CadastrarNovoUsuarioAsync(Usuario usuario)
         {
             _fileRepository.CreateDirectory(DataFile.Usuario);
-            if(IndicaDadosCadastroUsuarioPreenchido(usuario))
-            {
-                await _usuarioRepository.CriarUsuarioAsync(usuario);
-            }
+            ValidarDadosCadastroUsuarioPreenchido(usuario);
+            return await _usuarioRepository.CriarUsuarioAsync(usuario);
+            
 
         }
 
-        public bool IndicaDadosCadastroUsuarioPreenchido(Usuario usuario)
+        public bool ValidarDadosCadastroUsuarioPreenchido(Usuario usuario)
         {
             if(string.IsNullOrEmpty(usuario.Login))
             {

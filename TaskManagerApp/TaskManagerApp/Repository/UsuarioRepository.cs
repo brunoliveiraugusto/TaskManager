@@ -25,7 +25,7 @@ namespace TaskManagerApp.Repository
             _sourcePath = _fileRepository.GetSourcePath(DataFile.Usuario);
         }
 
-        public async Task CriarUsuarioAsync(Usuario usuario)
+        public async Task<Guid> CriarUsuarioAsync(Usuario usuario)
         {
             bool usuarioCadastrado = await IndicaUsuarioExistenteAsync(usuario.Login);
             
@@ -36,6 +36,7 @@ namespace TaskManagerApp.Repository
                 Usuarios.Add(usuario);
                 await _fileRepository.ClearFileAsync(_sourcePath);
                 await PersistirAsync(Serialize(Usuarios));
+                return usuario.Id;
             }
             else
             {
