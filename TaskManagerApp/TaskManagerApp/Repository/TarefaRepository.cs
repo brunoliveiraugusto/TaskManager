@@ -38,6 +38,7 @@ namespace TaskManagerApp.Repository
         {
             _fileRepository.CreateDirectory(DataFile.Tarefa);
             tarefa.Id = GetNewGuid();
+            if (Tarefas == null) Tarefas = new List<Tarefa>();
             Tarefas.Add(tarefa);
             await _fileRepository.ClearFileAsync(_sourcePath);
             await PersistirAsync(Serialize(Tarefas));
@@ -45,7 +46,10 @@ namespace TaskManagerApp.Repository
 
         public List<Tarefa> ObterTarefas()
         {
-            return JsonConvert.DeserializeObject<List<Tarefa>>(_fileSystem.File.ReadAllText(_sourcePath));
+            if (_fileRepository.DirectoryExists(DataFile.Tarefa))
+                return JsonConvert.DeserializeObject<List<Tarefa>>(_fileSystem.File.ReadAllText(_sourcePath));
+            else
+                return null;
         }
 
         public async Task RemoverAsync(Guid id, Guid idUsuario)
