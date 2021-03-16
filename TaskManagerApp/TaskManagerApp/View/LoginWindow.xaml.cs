@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskManagerApp.Domain;
 using TaskManagerApp.Service.Interfaces;
+using TaskManagerApp.View;
 
 namespace TaskManagerApp
 {
@@ -22,6 +23,7 @@ namespace TaskManagerApp
     {
         private ILoginService _loginService;
         private IUsuarioService _usuarioService;
+        protected Guid IdUsuario { get; set; }
 
         public LoginWindow(ILoginService loginService, IUsuarioService usuarioService)
         {
@@ -40,12 +42,20 @@ namespace TaskManagerApp
                     Password = txtPassword.Password
                 };
 
-                await _loginService.LoginAsync(usuario);
+                IdUsuario = await _loginService.LoginAsync(usuario);
+                OpenFormHome(sender, e);
             }
             catch(Exception ex)
             {
                 txtErroLogin.Content = ex.Message;
             }
+        }
+
+        private void OpenFormHome(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var homeWindow = new HomeWindow(IdUsuario);
+            homeWindow.Show();
         }
 
         private void OpenFormCadastro(object sender, RoutedEventArgs e)
