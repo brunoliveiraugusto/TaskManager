@@ -27,13 +27,15 @@ namespace TaskManagerApp
     {
         private readonly IUsuarioService _usuarioService;
         private readonly ILoginService _loginService;
+        private readonly ITarefaService _tarefaService;
         protected Guid IdUsuario { get; set; }
 
-        public MainWindow(IUsuarioService usuarioService, ILoginService loginService)
+        public MainWindow(IUsuarioService usuarioService, ILoginService loginService, ITarefaService tarefaService)
         {
             InitializeComponent();
             _usuarioService = usuarioService;
             _loginService = loginService;
+            _tarefaService = tarefaService;
         }
 
         private async void CadastrarUsuario(object sender, RoutedEventArgs e)
@@ -58,14 +60,14 @@ namespace TaskManagerApp
         private void OpenFormLogin(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            LoginWindow loginWindow = new LoginWindow(_loginService, _usuarioService);
+            LoginWindow loginWindow = new LoginWindow(_loginService, _usuarioService, _tarefaService);
             loginWindow.Show();
         }
 
         private void OpenFormHome(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var homeWindow = new HomeWindow(IdUsuario);
+            var homeWindow = new HomeWindow(IdUsuario, _tarefaService);
             homeWindow.Show();
         }
     }
