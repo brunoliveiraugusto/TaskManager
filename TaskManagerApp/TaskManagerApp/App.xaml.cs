@@ -49,6 +49,7 @@ namespace TaskManagerApp
             services.AddSingleton<IFileSystem>(new FileSystem());
 
             services.AddTransient(typeof(MainWindow));
+            services.AddTransient(typeof(LoginWindow));
         }
     }
 }
