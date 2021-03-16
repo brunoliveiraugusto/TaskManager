@@ -18,9 +18,12 @@ namespace TaskManagerApp.View
     /// </summary>
     public partial class HomeWindow : Window
     {
-        public HomeWindow()
+        protected Guid IdUsuario { get; set; }
+
+        public HomeWindow(Guid idUsuario)
         {
             InitializeComponent();
+            IdUsuario = idUsuario;
         }
     }
 }

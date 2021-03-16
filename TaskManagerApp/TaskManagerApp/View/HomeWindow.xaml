@@ -5,27 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TaskManagerApp.View"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="1400"
+      d:DesignHeight="700" d:DesignWidth="1000"
       Title="Home">
 
     <Grid>
-        <Label Content="Tarefas" HorizontalAlignment="Left" Height="68" Margin="270,10,0,0" VerticalAlignment="Top" Width="800" HorizontalContentAlignment="Center"
+        <Label Content="Tarefas" HorizontalAlignment="Center" Height="68" Margin="0,4,0,0" VerticalAlignment="Top" Width="800" HorizontalContentAlignment="Center"
                FontSize="40"/>
-        <Label Content="Descrição da tarefa:" HorizontalAlignment="Left" Height="31" Margin="34,186,0,0" VerticalAlignment="Top" Width="220" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="197" Margin="34,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
-        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="34,475,0,0" VerticalAlignment="Top" Width="350"/>
-        <Label Content="Nova Tarefa" HorizontalAlignment="Left" Height="83" Margin="34,78,0,0" VerticalAlignment="Top" Width="350" FontSize="30" VerticalContentAlignment="Center"
+        <Label Content="Descrição da tarefa:" HorizontalAlignment="Left" Height="42" Margin="34,186,0,0" VerticalAlignment="Top" Width="220" FontSize="20" VerticalContentAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Height="197" Margin="34,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
+        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="34,475,0,0" VerticalAlignment="Top" Width="254"/>
+        <Label Content="Nova Tarefa" HorizontalAlignment="Left" Height="62" Margin="34,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"/>
-        <Label Content="À Fazer" HorizontalAlignment="Left" Height="83" Margin="495,83,0,0" VerticalAlignment="Top" Width="350" FontSize="30" VerticalContentAlignment="Center"
+        <Label Content="À Fazer" HorizontalAlignment="Left" Height="62" Margin="352,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Height="197" Margin="481,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
-        <Button Content="Editar" HorizontalAlignment="Left" Height="46" Margin="481,475,0,0" VerticalAlignment="Top" Width="114"/>
-        <Button Content="Concluir" HorizontalAlignment="Left" Height="46" Margin="629,475,0,0" VerticalAlignment="Top" Width="114"/>
-        <Button Content="Remover" HorizontalAlignment="Left" Height="46" Margin="777,475,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label Content="Feitas" HorizontalAlignment="Left" Height="83" Margin="985,83,0,0" VerticalAlignment="Top" Width="350" FontSize="30" VerticalContentAlignment="Center"
+        <TextBox HorizontalAlignment="Left" Height="197" Margin="352,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
+        <Button Content="Editar" HorizontalAlignment="Left" Height="46" Margin="352,475,0,0" VerticalAlignment="Top" Width="68"/>
+        <Button Content="Concluir" HorizontalAlignment="Left" Height="46" Margin="445,475,0,0" VerticalAlignment="Top" Width="68"/>
+        <Button Content="Remover" HorizontalAlignment="Left" Height="46" Margin="538,475,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.25,0.61"/>
+        <Label Content="Feitas" HorizontalAlignment="Left" Height="62" Margin="670,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Height="197" Margin="985,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380"/>
-        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="985,475,0,0" VerticalAlignment="Top" Width="380"/>
+        <TextBox HorizontalAlignment="Left" Height="197" Margin="670,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
+        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="670,470,0,0" VerticalAlignment="Top" Width="254"/>
 
     </Grid>
 </Window>
