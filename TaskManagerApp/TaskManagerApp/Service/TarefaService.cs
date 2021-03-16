@@ -22,7 +22,7 @@ namespace TaskManagerApp.Service
         {
             ValidarDadosPreenchidosCadastroTarefa(tarefa);
             await _tarefaRepository.CriarAsync(tarefa);
-        }
+        }        
 
         public void ValidarDadosPreenchidosCadastroTarefa(Tarefa tarefa)
         {
@@ -30,6 +30,16 @@ namespace TaskManagerApp.Service
             {
                 throw new RequiredFieldException("Por favor, informe a Descrição da tarefa.");
             }
+        }
+
+        public async Task<IEnumerable<Tarefa>> ObterTarefasCadastradasPorUsuario(Guid usuarioId)
+        {
+            return await _tarefaRepository.ObterTarefasPorIdUsuarioAsync(usuarioId);
+        }
+
+        public async Task RemoverTarefaAsync(Guid tarefaId, Guid usuarioId)
+        {
+            await _tarefaRepository.RemoverAsync(tarefaId, usuarioId);
         }
     }
 }
