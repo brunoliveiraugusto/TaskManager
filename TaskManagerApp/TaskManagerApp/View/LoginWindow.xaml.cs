@@ -57,7 +57,7 @@ namespace TaskManagerApp
         private void OpenFormHome(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var homeWindow = new HomeWindow(IdUsuario, _tarefaService);
+            var homeWindow = new HomeWindow(IdUsuario, _tarefaService, _loginService, _usuarioService);
             homeWindow.Show();
         }
 

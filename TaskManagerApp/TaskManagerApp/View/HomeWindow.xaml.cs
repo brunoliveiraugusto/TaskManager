@@ -21,13 +21,18 @@ namespace TaskManagerApp.View
     public partial class HomeWindow : Window
     {
         private readonly ITarefaService _tarefaService;
+        private readonly ILoginService _loginService;
+        private readonly IUsuarioService _usuarioService;
+
         protected Guid IdUsuario { get; set; }
 
-        public HomeWindow(Guid idUsuario, ITarefaService tarefaService)
+        public HomeWindow(Guid idUsuario, ITarefaService tarefaService, ILoginService loginService, IUsuarioService usuarioService)
         {
             InitializeComponent();
             IdUsuario = idUsuario;
             _tarefaService = tarefaService;
+            _loginService = loginService;
+            _usuarioService = usuarioService;
             ObterTarefasCadastradas();
             ObterTarefasCadastradasConcluidas();
             txtEdicaoTarefa.Visibility = Visibility.Hidden;
@@ -140,6 +145,13 @@ namespace TaskManagerApp.View
         {
             btnConcluirEdicao.Visibility = visibility;
             txtEdicaoTarefa.Visibility = visibility;
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var loginWindow = new LoginWindow(_loginService, _usuarioService, _tarefaService);
+            loginWindow.Show();
         }
     }
 }

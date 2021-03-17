@@ -41,6 +41,7 @@
         </ListView>
         <TextBox x:Name="txtEdicaoTarefa" HorizontalAlignment="Left" Height="197" Margin="352,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
         <Button Name="btnConcluirEdicao" Content="Concluir Edição" HorizontalAlignment="Left" Height="46" Margin="352,475,0,0" VerticalAlignment="Top" Width="254" Click="ConcluirEdicao"/>
+        <Button Content="Sair" HorizontalAlignment="Left" Height="37" Margin="900,72,0,0" VerticalAlignment="Top" Width="58" Click="Logout"/>
 
     </Grid>
 </Window>
