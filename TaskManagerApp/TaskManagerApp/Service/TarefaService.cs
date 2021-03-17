@@ -32,14 +32,19 @@ namespace TaskManagerApp.Service
             }
         }
 
-        public async Task<IEnumerable<Tarefa>> ObterTarefasCadastradasPorUsuario(Guid usuarioId)
+        public async Task<IEnumerable<Tarefa>> ObterTarefasCadastradasPorUsuario(Guid usuarioId, bool tarefaConcluida = false)
         {
-            return await _tarefaRepository.ObterTarefasPorIdUsuarioAsync(usuarioId);
+            return await _tarefaRepository.ObterTarefasPorIdUsuarioAsync(usuarioId, tarefaConcluida);
         }
 
         public async Task RemoverTarefaAsync(Guid tarefaId, Guid usuarioId)
         {
             await _tarefaRepository.RemoverAsync(tarefaId, usuarioId);
+        }
+
+        public async Task AtualizarTarefaAsync(Tarefa tarefa)
+        {
+            await _tarefaRepository.AtualizarAsync(tarefa);
         }
     }
 }
