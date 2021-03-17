@@ -28,8 +28,8 @@ namespace TaskManagerApp.Repository
 
         public async Task AtualizarAsync(Tarefa tarefa)
         {
-            int index = Tarefas.IndexOf(tarefa);
-            Tarefas[index] = tarefa;
+            Tarefas.RemoveAll(t => t.Id == tarefa.Id && t.IdUsuario == tarefa.IdUsuario);
+            Tarefas.Add(tarefa);
             await _fileRepository.ClearFileAsync(_sourcePath);
             await PersistirAsync(Serialize(Tarefas));
         }
@@ -74,10 +74,12 @@ namespace TaskManagerApp.Repository
             return Guid.NewGuid();
         }
 
-        public async Task<List<Tarefa>> ObterTarefasPorIdUsuarioAsync(Guid usuarioId)
+        public async Task<List<Tarefa>> ObterTarefasPorIdUsuarioAsync(Guid usuarioId, bool tarefaConcluida = false)
         {
             var tarefas = JsonConvert.DeserializeObject<IEnumerable<Tarefa>>(await _fileSystem.File.ReadAllTextAsync(_sourcePath));
-            return tarefas.Where(tarefa => tarefa.IdUsuario == usuarioId).ToList();
+            if(tarefas != null)
+                return tarefas.Where(tarefa => tarefa.IdUsuario == usuarioId && tarefa.TarefaConcluida == tarefaConcluida).ToList();
+            return new List<Tarefa>();
         }
     }
 }
