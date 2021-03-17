@@ -9,5 +9,6 @@ namespace TaskManagerApp.Domain
         public DateTime DataCriacao { get; set; }
         public DateTime? DataEdicao { get; set; }
         public Guid IdUsuario { get; set; }
+        public bool TarefaConcluida { get; set; }
     }
 }
