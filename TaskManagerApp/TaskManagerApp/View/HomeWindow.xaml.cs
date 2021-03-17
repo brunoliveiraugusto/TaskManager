@@ -30,6 +30,8 @@ namespace TaskManagerApp.View
             _tarefaService = tarefaService;
             ObterTarefasCadastradas();
             ObterTarefasCadastradasConcluidas();
+            txtEdicaoTarefa.Visibility = Visibility.Hidden;
+            btnConcluirEdicao.Visibility = Visibility.Hidden;
         }
 
         private async void CadastrarTarefa(object sender, RoutedEventArgs e)
@@ -98,6 +100,46 @@ namespace TaskManagerApp.View
                 await _tarefaService.RemoverTarefaAsync(tarefa.Id, tarefa.IdUsuario);
                 ObterTarefasCadastradasConcluidas();
             }
+        }
+
+        private void EditarTarefa(object sender, RoutedEventArgs e)
+        {
+            Tarefa tarefa = ConvertObject(listTarefas);
+            if(tarefa != null)
+            {
+                AjustarExibicaoFormTarefasAhFazer(Visibility.Hidden);
+                AjustarExibicaoFormEdicaoTarefa(Visibility.Visible);
+                txtEdicaoTarefa.Text = tarefa.Descricao;
+            }
+        }
+
+        private async void ConcluirEdicao(object sender, RoutedEventArgs e)
+        {
+            Tarefa tarefa = ConvertObject(listTarefas);
+            if(tarefa != null)
+            {
+                AjustarExibicaoFormTarefasAhFazer(Visibility.Visible);
+                AjustarExibicaoFormEdicaoTarefa(Visibility.Hidden);
+                tarefa.Descricao = txtEdicaoTarefa.Text;
+                tarefa.TarefaConcluida = true;
+                await _tarefaService.AtualizarTarefaAsync(tarefa);
+                ObterTarefasCadastradas();
+                ObterTarefasCadastradasConcluidas();
+            }
+        }
+
+        private void AjustarExibicaoFormTarefasAhFazer(Visibility visibility)
+        {
+            listTarefas.Visibility = visibility;
+            btnEditar.Visibility = visibility;
+            btnRemover.Visibility = visibility;
+            btnConcluir.Visibility = visibility;
+        }
+
+        private void AjustarExibicaoFormEdicaoTarefa(Visibility visibility)
+        {
+            btnConcluirEdicao.Visibility = visibility;
+            txtEdicaoTarefa.Visibility = visibility;
         }
     }
 }
