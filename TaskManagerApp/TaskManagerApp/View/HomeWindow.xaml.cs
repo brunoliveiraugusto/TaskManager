@@ -29,6 +29,7 @@ namespace TaskManagerApp.View
             IdUsuario = idUsuario;
             _tarefaService = tarefaService;
             ObterTarefasCadastradas();
+            ObterTarefasCadastradasConcluidas();
         }
 
         private async void CadastrarTarefa(object sender, RoutedEventArgs e)
@@ -37,7 +38,8 @@ namespace TaskManagerApp.View
             {
                 DataCriacao = DateTime.Now,
                 Descricao = txtDescricaoTarefaCadastro.Text,
-                IdUsuario = this.IdUsuario
+                IdUsuario = this.IdUsuario,
+                TarefaConcluida = false
             };
 
             await _tarefaService.CadastarTarefaAsync(tarefa);
@@ -50,6 +52,11 @@ namespace TaskManagerApp.View
             listTarefas.ItemsSource = await _tarefaService.ObterTarefasCadastradasPorUsuario(IdUsuario);
         }
 
+        private async void ObterTarefasCadastradasConcluidas()
+        {
+            listTarefasConcluidas.ItemsSource = await _tarefaService.ObterTarefasCadastradasPorUsuario(IdUsuario, true);
+        }
+
         private void TarefaSelecionada(object sender, SelectionChangedEventArgs e)
         {
             Tarefa tarefa = (Tarefa)listTarefas.SelectedItem;
@@ -57,11 +64,39 @@ namespace TaskManagerApp.View
 
         private async void RemoverTarefa(object sender, RoutedEventArgs e)
         {
-            Tarefa tarefa = (Tarefa)listTarefas.SelectedItem;
+            Tarefa tarefa = ConvertObject(listTarefas);
             if(tarefa != null)
             {
                 await _tarefaService.RemoverTarefaAsync(tarefa.Id, tarefa.IdUsuario);
                 ObterTarefasCadastradas();
+            }
+        }
+
+        private async void ConcluirTarefa(object sender, RoutedEventArgs e)
+        {
+            Tarefa tarefa = ConvertObject(listTarefas);
+            if(tarefa != null)
+            {
+                tarefa.TarefaConcluida = true;
+                await _tarefaService.AtualizarTarefaAsync(tarefa);
+                ObterTarefasCadastradas();
+                ObterTarefasCadastradasConcluidas();
+            }
+            
+        }
+
+        private Tarefa ConvertObject(ListView list)
+        {
+            return (Tarefa)list.SelectedItem;
+        }
+
+        private async void RemoverTarefaConcluida(object sender, RoutedEventArgs e)
+        {
+            Tarefa tarefa = ConvertObject(listTarefasConcluidas);
+            if(tarefa != null)
+            {
+                await _tarefaService.RemoverTarefaAsync(tarefa.Id, tarefa.IdUsuario);
+                ObterTarefasCadastradasConcluidas();
             }
         }
     }

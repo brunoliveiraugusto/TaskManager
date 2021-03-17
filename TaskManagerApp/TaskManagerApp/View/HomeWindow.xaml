@@ -19,14 +19,20 @@
         <Label Content="À Fazer" HorizontalAlignment="Left" Height="62" Margin="352,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
                HorizontalContentAlignment="Center"/>
         <Button Content="Editar" HorizontalAlignment="Left" Height="46" Margin="352,475,0,0" VerticalAlignment="Top" Width="68"/>
-        <Button Content="Concluir" HorizontalAlignment="Left" Height="46" Margin="445,475,0,0" VerticalAlignment="Top" Width="68"/>
+        <Button Content="Concluir" HorizontalAlignment="Left" Height="46" Margin="445,475,0,0" VerticalAlignment="Top" Width="68" Click="ConcluirTarefa"/>
         <Button Content="Remover" HorizontalAlignment="Left" Height="46" Margin="538,475,0,0" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.25,0.61" Click="RemoverTarefa"/>
         <Label Content="Feitas" HorizontalAlignment="Left" Height="62" Margin="670,109,0,0" VerticalAlignment="Top" Width="254" FontSize="30" VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Height="197" Margin="670,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254"/>
-        <Button Content="Adicionar Tarefa" HorizontalAlignment="Left" Height="46" Margin="670,470,0,0" VerticalAlignment="Top" Width="254"/>
+        <Button Content="Remover" HorizontalAlignment="Left" Height="46" Margin="670,470,0,0" VerticalAlignment="Top" Width="254" Click="RemoverTarefaConcluida"/>
         <Label x:Name="txtErroCadastroTarefa" HorizontalAlignment="Left" Height="24" Margin="34,541,0,0" VerticalAlignment="Top" Width="254"/>
         <ListView x:Name="listTarefas" HorizontalAlignment="Left" Height="197" Margin="352,251,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="TarefaSelecionada">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Descricao}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listTarefasConcluidas" HorizontalAlignment="Left" Height="197" Margin="670,251,0,0" VerticalAlignment="Top" Width="254" SelectionChanged="TarefaSelecionada">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Descricao}"/>
