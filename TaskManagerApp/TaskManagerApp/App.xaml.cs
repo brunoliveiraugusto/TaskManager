@@ -9,6 +9,7 @@ using System.IO.Abstractions;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TaskManagerApp.Configuration;
 using TaskManagerApp.Repository;
 using TaskManagerApp.Repository.Interfaces;
 using TaskManagerApp.Service;
@@ -38,20 +39,7 @@ namespace TaskManagerApp
 
         private void ConfigureServices(IServiceCollection services)
         {
-            //Services
-            services.AddScoped<IUsuarioService, UsuarioService>();
-            services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<ITarefaService, TarefaService>();
-
-            //Repository
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<IFileRepository, FileRepository>();
-            services.AddScoped<ITarefaRepository, TarefaRepository>();
-            
-            services.AddSingleton<IFileSystem>(new FileSystem());
-
-            services.AddTransient(typeof(MainWindow));
-            services.AddTransient(typeof(LoginWindow));
+            services.AddDIConfiguration();
         }
     }
 }
