@@ -127,6 +127,7 @@ namespace TaskManagerApp.View
                 AjustarExibicaoFormEdicaoTarefa(Visibility.Hidden);
                 tarefa.Descricao = txtEdicaoTarefa.Text;
                 tarefa.TarefaConcluida = true;
+                tarefa.DataEdicao = DateTime.Now;
                 await _tarefaService.AtualizarTarefaAsync(tarefa);
                 ObterTarefasCadastradas();
                 ObterTarefasCadastradasConcluidas();
