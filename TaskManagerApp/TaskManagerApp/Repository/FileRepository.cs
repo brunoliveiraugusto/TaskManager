@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using Microsoft.Extensions.Options;
+using System.IO;
 using System.IO.Abstractions;
 using System.Threading.Tasks;
+using TaskManagerApp.Configuration;
 using TaskManagerApp.Repository.Interfaces;
 using TaskManagerApp.Utils.Enum;
 
@@ -9,12 +11,14 @@ namespace TaskManagerApp.Repository
     public class FileRepository : IFileRepository
     {
         private IFileSystem _fileSystem;
-        private readonly string _sourcePath = @"D:\Workspace Pessoal\TaskManagerProdap\TaskManager\Dados\";
-        private readonly string _extensionFile = ".txt";
+        private readonly string _sourcePath;
+        private readonly string _extensionFile;
 
-        public FileRepository(IFileSystem fileSystem)
+        public FileRepository(IFileSystem fileSystem, IOptions<Settings> settings)
         {
             _fileSystem = fileSystem;
+            _sourcePath = settings.Value.SourcePath;
+            _extensionFile = settings.Value.ExtensionFile;
         }
 
         public bool DirectoryExists(DataFile file)
