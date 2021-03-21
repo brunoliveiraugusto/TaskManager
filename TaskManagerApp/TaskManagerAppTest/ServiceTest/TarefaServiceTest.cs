@@ -38,5 +38,25 @@ namespace TaskManagerAppTest.ServiceTest
             result.Should().NotBeNull();
             #endregion
         }
+
+        [Fact(DisplayName = "Obter tarefas cadastradas por usuário")]
+        async public void ObterTarefasCadastradasPorUsuarioTest()
+        {
+            #region Given
+            TarefaService service = MontarConstrutor();
+            #endregion
+
+            #region When
+            _tarefaRepositoryMock.Setup(s => s.ObterTarefasPorIdUsuarioAsync(It.IsAny<Guid>(), It.IsAny<bool>()))
+                .Returns(Task.FromResult(new TarefaTestBuilder().DefaultList().BuildList()));
+            var result = await service.ObterTarefasCadastradasPorUsuario(new TarefaTestBuilder().DefaultGuid(), new TarefaTestBuilder().DefaultBoolean());
+            #endregion
+
+            #region Then
+            result.Should().NotBeNull();
+            result.Should().NotBeEmpty();
+            result.Should().HaveCount(3);
+            #endregion
+        }
     }
 }
