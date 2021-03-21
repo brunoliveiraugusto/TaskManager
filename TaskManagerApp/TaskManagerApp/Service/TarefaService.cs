@@ -18,10 +18,10 @@ namespace TaskManagerApp.Service
             _tarefaRepository = tarefaRepository;
         }
 
-        public async Task CadastarTarefaAsync(Tarefa tarefa)
+        public async Task<Tarefa> CadastarTarefaAsync(Tarefa tarefa)
         {
             ValidarDadosPreenchidosCadastroTarefa(tarefa);
-            await _tarefaRepository.CriarAsync(tarefa);
+            return await _tarefaRepository.CriarAsync(tarefa);
         }        
 
         public void ValidarDadosPreenchidosCadastroTarefa(Tarefa tarefa)

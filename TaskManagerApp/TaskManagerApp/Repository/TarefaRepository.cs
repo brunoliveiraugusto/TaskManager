@@ -34,7 +34,7 @@ namespace TaskManagerApp.Repository
             await PersistirAsync(Serialize(Tarefas));
         }
 
-        public async Task CriarAsync(Tarefa tarefa)
+        public async Task<Tarefa> CriarAsync(Tarefa tarefa)
         {
             _fileRepository.CreateDirectory(DataFile.Tarefa);
             tarefa.Id = GetNewGuid();
@@ -42,6 +42,7 @@ namespace TaskManagerApp.Repository
             Tarefas.Add(tarefa);
             await _fileRepository.ClearFileAsync(_sourcePath);
             await PersistirAsync(Serialize(Tarefas));
+            return tarefa;
         }
 
         public List<Tarefa> ObterTarefas()

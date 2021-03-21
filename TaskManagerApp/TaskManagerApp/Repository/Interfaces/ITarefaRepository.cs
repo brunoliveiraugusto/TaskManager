@@ -8,7 +8,7 @@ namespace TaskManagerApp.Repository.Interfaces
 {
     public interface ITarefaRepository : IRepository<Tarefa>
     {
-        Task CriarAsync(Tarefa tarefa);
+        Task<Tarefa> CriarAsync(Tarefa tarefa);
         Task RemoverAsync(Guid id, Guid idUsuario);
         Task AtualizarAsync(Tarefa tarefa);
         List<Tarefa> ObterTarefas();

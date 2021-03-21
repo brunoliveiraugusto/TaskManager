@@ -8,7 +8,7 @@ namespace TaskManagerApp.Service.Interfaces
 {
     public interface ITarefaService
     {
-        Task CadastarTarefaAsync(Tarefa tarefa);
+        Task<Tarefa> CadastarTarefaAsync(Tarefa tarefa);
         void ValidarDadosPreenchidosCadastroTarefa(Tarefa tarefa);
         Task<IEnumerable<Tarefa>> ObterTarefasCadastradasPorUsuario(Guid usuarioId, bool tarefaConcluida = false);
         Task RemoverTarefaAsync(Guid tarefaId, Guid usuarioId);
