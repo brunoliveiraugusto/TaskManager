@@ -36,6 +36,7 @@ namespace TaskManagerAppTest.ServiceTest
 
             #region
             result.Should().NotBeNull();
+            result.DataEdicao.Should().BeNull();
             #endregion
         }
 
