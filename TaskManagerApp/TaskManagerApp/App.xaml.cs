@@ -29,6 +29,13 @@ namespace TaskManagerApp
         protected override void OnStartup(StartupEventArgs e)
         {
             var serviceCollection = new ServiceCollection();
+
+            var builder = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            Configuration = builder.Build();
+
             ConfigureServices(serviceCollection);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
@@ -40,6 +47,9 @@ namespace TaskManagerApp
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddDIConfiguration();
+
+            services.Configure<Settings>
+                (Configuration.GetSection(nameof(Settings)));
         }
     }
 }
